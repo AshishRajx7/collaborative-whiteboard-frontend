@@ -8,14 +8,14 @@ function Room() {
   const [socket, setSocket] = useState(null);
   const [status, setStatus] = useState('Connecting...');
   const [color, setColor] = useState('#000000');
+  const [userCount, setUserCount] = useState(1); // user count
 
   const canvasRef = useRef(null);
   const isDrawing = useRef(false);
 
   useEffect(() => {
-  const ws = new WebSocket(`wss://collaborative-whiteboard-backend-production.up.railway.app/ws/${roomId}`);
-  setSocket(ws);
-
+    const ws = new WebSocket(`wss://collaborative-whiteboard-backend-production.up.railway.app/ws/${roomId}`);
+    setSocket(ws);
 
     ws.onopen = () => setStatus('Connected');
     ws.onclose = () => setStatus('Disconnected');
@@ -31,6 +31,9 @@ function Room() {
         ctx.strokeStyle = message.color;
         ctx.lineTo(message.x, message.y);
         ctx.stroke();
+      } else if (message.type === 'userCount') {
+        // Handle user count update
+        setUserCount(message.count);
       }
     };
 
@@ -75,6 +78,7 @@ function Room() {
     <div className="room-container">
       <h1>Room ID: {roomId}</h1>
       <p>Status: {status}</p>
+      <h2>Users in Room: {userCount}</h2> {/* Display user count */}
       <div className="workspace">
         <canvas
           ref={canvasRef}
