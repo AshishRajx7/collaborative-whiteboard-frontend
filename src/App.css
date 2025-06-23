@@ -1,0 +1,45 @@
+/* General App Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f0f2f5;
+  margin: 0;
+  padding: 0;
+}
+
+.homepage-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.create-btn, .join-btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #4caf50;
+  color: white;
+  transition: background-color 0.3s ease;
+}
+
+.create-btn:hover, .join-btn:hover {
+  background-color: #45a049;
+}
+
+.join-room input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  margin-right: 10px;
+}
